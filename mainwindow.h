@@ -33,22 +33,14 @@ public: // Methods
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    int new_y(int y_max, int y_);
-    int new_x(int x_max, int x_);
-
-    double get_Ax(Body * self, Body *comp);
-    double get_Ay(Body * self, Body *comp);
-
-    double calculate_distance(Body * self, Body *comp);
-
     void remove_empty_bodies();
 
 private: // Methods
 
 private slots: //slots
-    void on_start_button_clicked();
     void simulation();
 
+    void on_start_button_clicked();
     void on_pause_button_clicked();
     void on_resume_button_clicked();
 };

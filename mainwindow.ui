@@ -14,6 +14,9 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
@@ -103,7 +106,7 @@
             <number>99999</number>
            </property>
            <property name="value">
-            <number>100</number>
+            <number>0</number>
            </property>
           </widget>
          </item>
@@ -124,6 +127,9 @@
            </property>
            <property name="maximum">
             <number>99999</number>
+           </property>
+           <property name="value">
+            <number>4000</number>
            </property>
           </widget>
          </item>
@@ -177,7 +183,7 @@
             <number>99999</number>
            </property>
            <property name="value">
-            <number>-50</number>
+            <number>-7000</number>
            </property>
           </widget>
          </item>
@@ -198,6 +204,9 @@
            </property>
            <property name="maximum">
             <number>99999</number>
+           </property>
+           <property name="value">
+            <number>5000</number>
            </property>
           </widget>
          </item>
@@ -268,7 +277,7 @@
             <double>999999.989999999990687</double>
            </property>
            <property name="value">
-            <double>0.000000000000000</double>
+            <double>25.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -310,7 +319,7 @@
             <number>99999999</number>
            </property>
            <property name="value">
-            <number>10</number>
+            <number>120</number>
            </property>
           </widget>
          </item>
@@ -320,7 +329,10 @@
             <number>99999999</number>
            </property>
            <property name="value">
-            <number>25</number>
+            <number>300</number>
+           </property>
+           <property name="displayIntegerBase">
+            <number>10</number>
            </property>
           </widget>
          </item>
@@ -330,7 +342,7 @@
             <number>99999999</number>
            </property>
            <property name="value">
-            <number>0</number>
+            <number>100</number>
            </property>
           </widget>
          </item>
@@ -401,7 +413,7 @@
             <double>999999.989999999990687</double>
            </property>
            <property name="value">
-            <double>0.000000000000000</double>
+            <double>-1.600000000000000</double>
            </property>
           </widget>
          </item>
@@ -464,7 +476,7 @@
             <double>999999.989999999990687</double>
            </property>
            <property name="value">
-            <double>0.500000000000000</double>
+            <double>0.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -490,7 +502,7 @@
             <double>999999.989999999990687</double>
            </property>
            <property name="value">
-            <double>0.000000000000000</double>
+            <double>1.200000000000000</double>
            </property>
           </widget>
          </item>
@@ -563,17 +575,7 @@
       </layout>
      </item>
      <item>
-      <widget class="QGraphicsView" name="graphicsView">
-       <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
-       </property>
-       <property name="verticalScrollBarPolicy">
-        <enum>Qt::ScrollBarAlwaysOff</enum>
-       </property>
-       <property name="horizontalScrollBarPolicy">
-        <enum>Qt::ScrollBarAlwaysOff</enum>
-       </property>
-      </widget>
+      <widget class="QGraphicsView" name="graphicsView"/>
      </item>
     </layout>
    </widget>

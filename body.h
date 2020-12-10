@@ -11,18 +11,19 @@ class Body : public QObject, public QGraphicsItem {
     Q_OBJECT
 
 public: // Variables
-    double Ax, Ay;
 
 private: // Variables
     double x, y;
     double m;
     int r;
     double V0x, V0y;
-    //double Ax, Ay;
+    double Ax, Ay;
     QString name;
 
     double T;
     double G;
+
+    float scale;
 
 public: // Methods
     explicit Body(QObject *parent = nullptr, QString name_ = "", double x_ = 0, double y_= 0, double m_= 0, int r_= 0, double V0x_= 0, double V0y_= 0);
@@ -32,29 +33,16 @@ public: // Methods
 
     bool is_empty();
 
-    void calculate_Ax(QList<Body *> bods);
-    void calculate_Ay(QList<Body *> bods);
-
-    void calculate_Vx();
-    void calculate_Vy();
-
-    void calculate_x();
-    void calculate_y();
-
-    double calculate_distance(Body *bod);
+    void acelerate(Body *bod);
+    void update();
 
     double getX() const;
-    void setX(double value);
-
     double getY() const;
-    void setY(double value);
 
     double getM() const;
 
-    double getV0x() const;
-    double getV0y() const;
-
     QString getName() const;
+    float getScale() const;
 
 private: // Methods
 

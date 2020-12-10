@@ -11,16 +11,19 @@ Body::Body(QObject *parent, QString name_, double x_, double y_, double m_, int 
     Ax = 0;
     Ay = 0;
 
-    T = 0.01;
+    scale = 0.05;
+
+    T = 0.1;
     //G = 6.67384e-11;
     G = 6.67384*pow(10,-11);
 }
 
 QRectF Body::boundingRect() const {
-        return QRectF(-r, -r, 2*r, 2*r);
+        //return QRectF(-r, -r, 2*r, 2*r);
+        return QRectF(-1*scale*r, -1*scale*r, 2*scale*r, 2*scale*r);
 }
 void Body::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
-    painter->setBrush(Qt::magenta);
+    painter->setBrush(Qt::black);
     painter->drawEllipse(boundingRect());
 }
 
@@ -31,94 +34,38 @@ bool Body::is_empty() {
         return false;
 }
 
-void Body::calculate_Ax(QList<Body *> bods) {
-    //double aux = Ax;
-    double aux = 0;
+void Body::acelerate(Body *bod){
 
-    Ax= 0;
+    double dis;
+    dis = pow((pow((bod->getX() - x), 2)+pow((bod->getY() - y),2)), 1/2);
 
-    for(int k = 0; k<bods.size(); k++){
-
-        if(bods.at(k)->getName() != name){
-
-            //aux = (G*(bods.at(k)->getM()*(bods.at(k)->getX() - x))/(pow(calculate_distance(bods.at(k)), 3)));
-            aux = (G*(bods.at(k)->getM()*(bods.at(k)->getX() - x))/(pow(calculate_distance(bods.at(k)), 2)));
-
-            Ax = aux;
-        }
-
-    }
-    //Ax *= G;
-
-    //aux *= G;
-    //Ax = aux;
-}
-void Body::calculate_Ay(QList<Body *> bods) {
-    //double aux = Ay;
-    double aux = 0;
-
-    Ay = 0;
-
-    for(int k = 0; k<bods.size(); k++){
-
-        if(bods.at(k)->getName() != name){
-
-            //aux = (G*(bods.at(k)->getM()*(bods.at(k)->getY() - y)) / (pow(calculate_distance(bods.at(k)), 3)));
-            aux = (G*(bods.at(k)->getM()*(bods.at(k)->getY() - y)) / (pow(calculate_distance(bods.at(k)), 2)));
-
-            Ay = aux;
-        }
-
-    }
-    //Ay *= G;
-
-    //aux *= G;
-    //Ay = aux;
+    Ax = G*bod->getM()*(bod->getX()-x)/pow(dis, 2);
+    Ay = G*bod->getM()*(bod->getY()-y)/pow(dis, 2);
 }
 
-void Body::calculate_Vx() {
-    V0x = V0x + Ax*T;
-}
-void Body::calculate_Vy() {
-    V0y = V0y + Ay*T;
-}
+void Body::update(){
+    V0x = V0x + (Ax*T);
+    V0y = V0y + (Ay*T);
+    x = x + (V0x*T);
+    y = y + (V0y*T);
 
-void Body::calculate_x() {
-    x = x + V0x*T;
-}
-void Body::calculate_y() {
-    y = y + V0y*T;
-}
-
-double Body::calculate_distance(Body *bod) {
-    return pow((pow((bod->getX())-x,2)+pow((bod->getY() - y),2)), 1/2);
-    //return sqrt( pow((bod->getX() - x), 2) + pow((bod->getY() - y), 2) );
+    setPos(x*scale, y*scale);
 }
 
 double Body::getX() const{
     return x;
 }
-void Body::setX(double value){
-    x = value;
-}
 double Body::getY() const{
     return y;
-}
-void Body::setY(double value){
-    y = value;
 }
 
 double Body::getM() const{
     return m;
 }
 
-double Body::getV0x() const{
-    return V0x;
-}
-double Body::getV0y() const{
-    return V0y;
-}
-
 QString Body::getName() const {
     return name;
+}
+float Body::getScale() const {
+    return scale;
 }
