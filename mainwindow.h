@@ -27,7 +27,6 @@ private: // Variables
     QList <Body *> bodies;
 
     double T;
-    double G;
 
 public: // Methods
     MainWindow(QWidget *parent = nullptr);

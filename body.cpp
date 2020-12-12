@@ -12,21 +12,23 @@ Body::Body(QObject *parent, QString name_, QString color_, double x_, double y_,
     Ax = 0;
     Ay = 0;
 
+    xmin = -6000;
+    ymax = 6000;
+
     scale = 0.05;
 
     label = new QLabel;
     label->setText(name);
 
-    T = 0.1;
+    T = 5;
     //G = 6.67384e-11;
-    G = 6.67384*pow(10,-11);
+    G = 1;
 }
 Body::~Body() {
     delete label;
 }
 
 QRectF Body::boundingRect() const {
-        //return QRectF(-r, -r, 2*r, 2*r);
         return QRectF(-1*scale*r, -1*scale*r, 2*scale*r, 2*scale*r);
 }
 void Body::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
@@ -54,22 +56,50 @@ bool Body::is_empty() {
         return false;
 }
 
-void Body::acelerate(Body *bod){
-
+void Body::calculate_Ax(QList<Body *> bods) {
+    double aux = 0;
     double dis;
-    dis = pow((pow((bod->getX() - x), 2)+pow((bod->getY() - y),2)), 1/2);
 
-    Ax = G*bod->getM()*(bod->getX()-x)/pow(dis, 2);
-    Ay = G*bod->getM()*(bod->getY()-y)/pow(dis, 2);
+    Ax= 0;
+
+    for(int k = 0; k<bods.size(); k++){
+
+        if(bods.at(k)->getName() != name){
+
+
+            dis = sqrt(pow((bods.at(k)->getX() - x), 2)+pow((bods.at(k)->getY() - y),2));
+
+            aux += (G*(bods.at(k)->getM()*(bods.at(k)->getX() - x))/(pow(dis, 3)));
+        }
+    }
+    Ax = aux;
+}
+void Body::calculate_Ay(QList<Body *> bods) {
+    double aux = 0;
+    double dis;
+
+    Ay = 0;
+
+    for(int k = 0; k<bods.size(); k++){
+
+        if(bods.at(k)->getName() != name){
+
+            dis = sqrt(pow((bods.at(k)->getX() - x), 2)+pow((bods.at(k)->getY() - y),2));
+
+            aux += (G*(bods.at(k)->getM()*(bods.at(k)->getY() - y)) / (pow(dis, 3)));
+        }
+    }
+    Ay = aux;
 }
 
-void Body::update(){
+void Body::update(int w, int h){
     V0x = V0x + (Ax*T);
     V0y = V0y + (Ay*T);
     x = x + (V0x*T);
     y = y + (V0y*T);
 
-    setPos(-1*x*scale, -1*y*scale);
+    setX(new_x(x, w));
+    setY(new_y(y, h));
 }
 
 double Body::getX() const{
@@ -79,13 +109,18 @@ double Body::getY() const{
     return y;
 }
 
-float Body::getLabelX() const
-{
-    return (x*scale) + 2.5;
+int Body::new_x(float x_, int w) {
+    return int(((1-(x_/-6000))*(w))/2);
 }
-float Body::getLabelY() const
-{
-    return ((y-r)*scale) - 5;
+int Body::new_y(float y_, int h) {
+    return int(((1-(y_/8000))*(h))/2);
+}
+
+float Body::getLabelX() const {
+    return (x) + 25;
+}
+float Body::getLabelY() const {
+    return (y - (r *3));
 }
 
 double Body::getM() const{

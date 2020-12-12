@@ -23,6 +23,8 @@ private: // Variables
     QString name;
     QString color;
 
+    int w, h, ymax, xmin;
+
     double T;
     double G;
 
@@ -37,11 +39,16 @@ public: // Methods
 
     bool is_empty();
 
-    void acelerate(Body *bod);
-    void update();
+    void calculate_Ax(QList<Body *> bods);
+    void calculate_Ay(QList<Body *> bods);
+
+    void update(int w, int h);
 
     double getX() const;
     double getY() const;
+
+    int new_x(float x_, int w);
+    int new_y(float y_, int h);
 
     float getLabelX() const;
     float getLabelY() const;

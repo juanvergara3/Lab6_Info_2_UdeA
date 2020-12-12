@@ -5,16 +5,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->setupUi(this);
 
     scene = new QGraphicsScene(this);
-    scene->setSceneRect(0,0, ui->graphicsView->width(), ui->graphicsView->height());
-    scene->setBackgroundBrush((QPixmap(":/bg.png").scaledToWidth(scene->width())));
-    //scene->setSceneRect(ui->graphicsView->width()/2,  ui->graphicsView->height()/2, ui->graphicsView->width(), ui->graphicsView->height());
+    //scene->setSceneRect(-6000*0.05, -6000*0.05, ui->graphicsView->width(), ui->graphicsView->height());
+    scene->setSceneRect(0, 0, ui->graphicsView->width() - 10, ui->graphicsView->height() - 10);
+    scene->setBackgroundBrush((QPixmap(":/square_blue.png").scaledToWidth(25)));
 
     ui->graphicsView->setScene(scene);
     ui->centralwidget->adjustSize();
 
-    T = 0.1;
-    //G = 6.673e-11;
-    G = 6.67384*pow(10,-11);
+    T = 10;
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(simulation()));
@@ -26,16 +24,15 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::simulation(){
+    for(int i=0; i<bodies.size(); i++ ){
 
-    for(int i=0; i<bodies.size(); i++ ) {
-        for(int j=0; j<bodies.size(); j++ ) {
-            if(i!=j){
-                bodies.at(i)->acelerate(bodies.at(j));
-                bodies.at(i)->update();
-                bodies.at(i)->label->setGeometry(-1*bodies.at(i)->getLabelX(), -1*bodies.at(i)->getLabelY(), bodies.at(i)->getName().length()*8, 15);
-            }
-        }
+        bodies.at(i)->calculate_Ax(bodies);
+        bodies.at(i)->calculate_Ay(bodies);
+
+        bodies.at(i)->update(ui->graphicsView->width(), ui->graphicsView->height());
+        bodies.at(i)->label->setGeometry(bodies.at(i)->new_x(bodies.at(i)->getLabelX(), ui->graphicsView->width() - 10), bodies.at(i)->new_y(bodies.at(i)->getLabelY(), ui->graphicsView->height() - 10), bodies.at(i)->getName().length()*8, 10);
     }
+
 }
 
 void MainWindow::remove_empty_bodies() {
