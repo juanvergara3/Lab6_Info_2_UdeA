@@ -1,9 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsItem>
+#include <QMessageBox>
+#include <QMainWindow>
+#include <QTextStream>
+#include <QFileDialog>
 #include <QTimer>
 
 #include "body.h"
@@ -28,6 +31,11 @@ private: // Variables
 
     double T;
 
+    QFile file;
+    QTextStream txt_stream;
+    QString file_name;
+    bool save;
+
 public: // Methods
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -45,5 +53,6 @@ private slots: //slots
     void on_pause_button_clicked();
     void on_resume_button_clicked();
     void on_stop_button_clicked();
+    void on_help_button_clicked();
 };
 #endif // MAINWINDOW_H

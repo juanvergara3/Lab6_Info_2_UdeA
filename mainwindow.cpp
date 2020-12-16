@@ -5,7 +5,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->setupUi(this);
 
     scene = new QGraphicsScene(this);
-    //scene->setSceneRect(-6000*0.05, -6000*0.05, ui->graphicsView->width(), ui->graphicsView->height());
     scene->setSceneRect(0, 0, ui->graphicsView->width() - 10, ui->graphicsView->height() - 10);
     scene->setBackgroundBrush((QPixmap(":/square_blue.png").scaledToWidth(25)));
 
@@ -24,6 +23,12 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::simulation(){
+
+    if(save)
+        for(int i = 0; i<bodies.size(); i++ )
+            txt_stream << std::to_string(bodies.at(i)->getX()).c_str() << "\t" << std::to_string(bodies.at(i)->getY()).c_str() <<"\t";
+    txt_stream << "\r\n";
+
     for(int i=0; i<bodies.size(); i++ ){
 
         bodies.at(i)->calculate_Ax(bodies);
@@ -32,7 +37,6 @@ void MainWindow::simulation(){
         bodies.at(i)->update(ui->graphicsView->width(), ui->graphicsView->height());
         bodies.at(i)->label->setGeometry(bodies.at(i)->new_x(bodies.at(i)->getLabelX(), ui->graphicsView->width() - 10), bodies.at(i)->new_y(bodies.at(i)->getLabelY(), ui->graphicsView->height() - 10), bodies.at(i)->getName().length()*8, 10);
     }
-
 }
 
 void MainWindow::remove_empty_bodies() {
@@ -49,6 +53,8 @@ void MainWindow::update_T() {
 }
 
 void MainWindow::on_start_button_clicked() {
+
+    timer->stop();
 
     if(!ui->resume_button->isEnabled())
         ui->resume_button->setEnabled(true);
@@ -79,8 +85,41 @@ void MainWindow::on_start_button_clicked() {
         bodies.at(k)->label->setGeometry(-1*bodies.at(k)->getLabelX(), -1*bodies.at(k)->getLabelY(), bodies.at(k)->getName().length()*8, 15);
     }
 
-    update_T();
-    timer->start(T);
+    if(file.isOpen()){ //saving if it's opened
+        file.flush();
+        file.close();
+        ui->save_label->setText("Saved succesfully");
+    }
+    else
+        ui->save_label->setText("");
+
+    if(ui->save_box->QAbstractButton::isChecked()){
+
+        file_name = QFileDialog::getSaveFileName(this, "Save", "", "Text file (*.txt)");
+
+        if(file_name.isEmpty()) //not sure why this is necessary but ok
+            return;
+
+        file.setFileName(file_name);
+
+        file.open(QIODevice::WriteOnly | QIODevice::Text);
+
+        if(!file.isOpen()){
+            QMessageBox::critical(this, "Error", file.errorString());
+            return;
+        }
+
+        txt_stream.setDevice(&file);
+
+        save = true;
+        update_T();
+        timer->start(T);
+    }
+    else{
+        save = false;
+        update_T();
+        timer->start(T);
+    }
 }
 void MainWindow::on_pause_button_clicked() {
     timer->stop();
@@ -102,5 +141,16 @@ void MainWindow::on_stop_button_clicked() {
     ui->pause_button->setEnabled(false);
     ui->resume_button->setEnabled(false);
 
-    //save file
+    if(file.isOpen()){
+        file.flush();
+        file.close();
+        ui->save_label->setText("Saved succesfully");
+    }
+}
+void MainWindow::on_help_button_clicked() {
+    QString txt;
+    txt = "To save a file click on the CheckBox and then hit \"Start Simulation\"; a window asking for a file name and path will appear. As soon as you hit the \"Save\" button the simulation will start. "
+            "When you hit the \"Stop Simulation\" button or the \"Start Simulaton\" button the file will be closed and thus, saved.";
+
+    QMessageBox::about(this, "Help", txt);
 }
