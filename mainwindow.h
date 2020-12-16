@@ -34,6 +34,8 @@ public: // Methods
 
     void remove_empty_bodies();
 
+    void update_T();
+
 private: // Methods
 
 private slots: //slots
@@ -42,5 +44,6 @@ private slots: //slots
     void on_start_button_clicked();
     void on_pause_button_clicked();
     void on_resume_button_clicked();
+    void on_stop_button_clicked();
 };
 #endif // MAINWINDOW_H

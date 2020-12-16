@@ -1,6 +1,7 @@
 #include "body.h"
 
-Body::Body(QObject *parent, QString name_, QString color_, double x_, double y_, double m_, int r_, double V0x_, double V0y_) : QObject(parent) {
+Body::Body(QObject *parent, int id_, QString name_, QString color_, double x_, double y_, double m_, int r_, double V0x_, double V0y_) : QObject(parent) {
+    id = id_;
     name = name_;
     color = color_;
     x = x_;
@@ -82,7 +83,7 @@ void Body::calculate_Ay(QList<Body *> bods) {
 
     for(int k = 0; k<bods.size(); k++){
 
-        if(bods.at(k)->getName() != name){
+        if(bods.at(k)->getId() != id){
 
             dis = sqrt(pow((bods.at(k)->getX() - x), 2)+pow((bods.at(k)->getY() - y),2));
 
@@ -135,4 +136,7 @@ QString Body::getName() const {
 }
 float Body::getScale() const {
     return scale;
+}
+int Body::getId() const{
+    return  id;
 }

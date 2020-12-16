@@ -32,7 +32,7 @@
      <rect>
       <x>11</x>
       <y>1</y>
-      <width>671</width>
+      <width>731</width>
       <height>222</height>
      </rect>
     </property>
@@ -44,7 +44,7 @@
          <property name="sizeConstraint">
           <enum>QLayout::SetDefaultConstraint</enum>
          </property>
-         <item>
+         <item alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="name_label">
            <property name="text">
             <string>Body name</string>
@@ -103,7 +103,7 @@
        </item>
        <item>
         <layout class="QVBoxLayout" name="color_frame">
-         <item>
+         <item alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="color_label">
            <property name="text">
             <string>Color</string>
@@ -148,12 +148,12 @@
           <widget class="QComboBox" name="color_2">
            <item>
             <property name="text">
-             <string>Yellow</string>
+             <string>Blue</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Blue</string>
+             <string>Yellow</string>
             </property>
            </item>
            <item>
@@ -182,17 +182,17 @@
           <widget class="QComboBox" name="color_3">
            <item>
             <property name="text">
+             <string>Red</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Yellow</string>
             </property>
            </item>
            <item>
             <property name="text">
              <string>Blue</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Red</string>
             </property>
            </item>
            <item>
@@ -216,6 +216,11 @@
           <widget class="QComboBox" name="color_4">
            <item>
             <property name="text">
+             <string>Magenta</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Yellow</string>
             </property>
            </item>
@@ -227,11 +232,6 @@
            <item>
             <property name="text">
              <string>Red</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Magenta</string>
             </property>
            </item>
            <item>
@@ -250,6 +250,11 @@
           <widget class="QComboBox" name="color_5">
            <item>
             <property name="text">
+             <string>Green</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Yellow</string>
             </property>
            </item>
@@ -266,11 +271,6 @@
            <item>
             <property name="text">
              <string>Magenta</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Green</string>
             </property>
            </item>
            <item>
@@ -284,6 +284,11 @@
           <widget class="QComboBox" name="color_6">
            <item>
             <property name="text">
+             <string>Black</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Yellow</string>
             </property>
            </item>
@@ -307,18 +312,13 @@
              <string>Green</string>
             </property>
            </item>
-           <item>
-            <property name="text">
-             <string>Black</string>
-            </property>
-           </item>
           </widget>
          </item>
         </layout>
        </item>
        <item>
         <layout class="QVBoxLayout" name="x_frame">
-         <item>
+         <item alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="x_label">
            <property name="text">
             <string>X initial</string>
@@ -395,7 +395,7 @@
        </item>
        <item>
         <layout class="QVBoxLayout" name="y_frame">
-         <item>
+         <item alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="y_label">
            <property name="text">
             <string>Y inital</string>
@@ -472,7 +472,7 @@
        </item>
        <item>
         <layout class="QVBoxLayout" name="m_frame">
-         <item>
+         <item alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="m_label">
            <property name="text">
             <string>Mass</string>
@@ -534,7 +534,7 @@
        </item>
        <item>
         <layout class="QVBoxLayout" name="r_frame">
-         <item>
+         <item alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="r_label">
            <property name="text">
             <string>Radious</string>
@@ -599,7 +599,7 @@
        </item>
        <item>
         <layout class="QVBoxLayout" name="vx_frame">
-         <item>
+         <item alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="vx_label">
            <property name="text">
             <string>Inital Vx</string>
@@ -688,7 +688,7 @@
        </item>
        <item>
         <layout class="QVBoxLayout" name="vy_frame">
-         <item>
+         <item alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="vy_label">
            <property name="text">
             <string>Inital Vy</string>
@@ -775,14 +775,68 @@
          </item>
         </layout>
        </item>
+       <item>
+        <layout class="QVBoxLayout" name="speed_frame">
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="speed_label">
+           <property name="text">
+            <string>Simulation
+   Speed</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="speed_slider_frame">
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="speed_slider">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>20</number>
+             </property>
+             <property name="pageStep">
+              <number>1</number>
+             </property>
+             <property name="value">
+              <number>10</number>
+             </property>
+             <property name="sliderPosition">
+              <number>10</number>
+             </property>
+             <property name="tracking">
+              <bool>false</bool>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="invertedAppearance">
+              <bool>true</bool>
+             </property>
+             <property name="invertedControls">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="buttons_frame">
        <item>
         <widget class="QPushButton" name="start_button">
          <property name="text">
           <string notr="true">Start Simulation</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="stop_button">
+         <property name="text">
+          <string>Stop Simualtion</string>
          </property>
         </widget>
        </item>
@@ -803,6 +857,45 @@
       </layout>
      </item>
     </layout>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>160</y>
+      <width>72</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CheckBox</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>120</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>60</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Help</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

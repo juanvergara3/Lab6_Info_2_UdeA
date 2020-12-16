@@ -20,6 +20,8 @@ private: // Variables
     int r;
     double V0x, V0y;
     double Ax, Ay;
+
+    int id;
     QString name;
     QString color;
 
@@ -31,7 +33,7 @@ private: // Variables
     float scale;
 
 public: // Methods
-    explicit Body(QObject *parent = nullptr, QString name_ = "", QString color_ = "", double x_ = 0, double y_= 0, double m_= 0, int r_= 0, double V0x_= 0, double V0y_= 0);
+    explicit Body(QObject *parent = nullptr, int id_ = 0, QString name_ = "", QString color_ = "", double x_ = 0, double y_= 0, double m_= 0, int r_= 0, double V0x_= 0, double V0y_= 0);
     ~Body();
 
     QRectF boundingRect() const;
@@ -58,6 +60,7 @@ public: // Methods
 
     QString getName() const;
     float getScale() const;
+    int getId() const;
 
 private: // Methods
 
