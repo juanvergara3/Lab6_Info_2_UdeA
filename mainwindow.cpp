@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     T = ui->speed_slider->value();
 
+    save = false;
+
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(simulation()));
 }
@@ -24,10 +26,11 @@ MainWindow::~MainWindow() {
 
 void MainWindow::simulation(){
 
-    if(save)
+    if(save){
         for(int i = 0; i<bodies.size(); i++ )
             txt_stream << std::to_string(bodies.at(i)->getX()).c_str() << "\t" << std::to_string(bodies.at(i)->getY()).c_str() <<"\t";
-    txt_stream << "\r\n";
+        txt_stream << "\r\n";
+    }
 
     for(int i=0; i<bodies.size(); i++ ){
 
