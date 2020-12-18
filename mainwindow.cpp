@@ -29,7 +29,7 @@ void MainWindow::simulation(){
     if(save){
         for(int i = 0; i<bodies.size(); i++ )
             txt_stream << std::to_string(bodies.at(i)->getX()).c_str() << "\t" << std::to_string(bodies.at(i)->getY()).c_str() <<"\t";
-        txt_stream << "\r\n";
+        txt_stream << "\n";
     }
 
     for(int i=0; i<bodies.size(); i++ ){
@@ -53,6 +53,95 @@ void MainWindow::remove_empty_bodies() {
 }
 void MainWindow::update_T() {
     T = ui->speed_slider->value();
+}
+
+void MainWindow::get_export_values() {
+    txt_stream <<  std::to_string(ui->x_box_1->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->y_box_1->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->m_box_1->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->r_box_1->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->vx_box_1->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->vy_box_1->value()).c_str() << '\t';
+    txt_stream << "\n";
+    txt_stream <<  std::to_string(ui->x_box_2->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->y_box_2->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->m_box_2->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->r_box_2->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->vx_box_2->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->vy_box_2->value()).c_str() << '\t';
+    txt_stream << "\n";
+    txt_stream <<  std::to_string(ui->x_box_3->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->y_box_3->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->m_box_3->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->r_box_3->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->vx_box_3->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->vy_box_3->value()).c_str() << '\t';
+    txt_stream << "\n";
+    txt_stream <<  std::to_string(ui->x_box_4->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->y_box_4->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->m_box_4->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->r_box_4->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->vx_box_4->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->vy_box_4->value()).c_str() << '\t';
+    txt_stream << "\n";
+    txt_stream <<  std::to_string(ui->x_box_5->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->y_box_5->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->m_box_5->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->r_box_5->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->vx_box_5->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->vy_box_5->value()).c_str() << '\t';
+    txt_stream << "\n";
+    txt_stream <<  std::to_string(ui->x_box_6->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->y_box_6->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->m_box_6->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->r_box_6->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->vx_box_6->value()).c_str() << '\t';
+    txt_stream <<  std::to_string(ui->vy_box_6->value()).c_str() << '\t';
+    txt_stream << "\n";
+}
+
+void MainWindow::update_boxes() {
+    ui->x_box_1->update();
+    ui->y_box_1->update();
+    ui->m_box_1->update();
+    ui->r_box_1->update();
+    ui->vx_box_1->update();
+    ui->vy_box_1->update();
+
+    ui->x_box_2->update();
+    ui->y_box_2->update();
+    ui->m_box_2->update();
+    ui->r_box_2->update();
+    ui->vx_box_2->update();
+    ui->vy_box_2->update();
+
+    ui->x_box_3->update();
+    ui->y_box_3->update();
+    ui->m_box_3->update();
+    ui->r_box_3->update();
+    ui->vx_box_3->update();
+    ui->vy_box_3->update();
+
+    ui->x_box_4->update();
+    ui->y_box_4->update();
+    ui->m_box_4->update();
+    ui->r_box_4->update();
+    ui->vx_box_4->update();
+    ui->vy_box_4->update();
+
+    ui->x_box_5->update();
+    ui->y_box_5->update();
+    ui->m_box_5->update();
+    ui->r_box_5->update();
+    ui->vx_box_5->update();
+    ui->vy_box_5->update();
+
+    ui->x_box_6->update();
+    ui->y_box_6->update();
+    ui->m_box_6->update();
+    ui->r_box_6->update();
+    ui->vx_box_6->update();
+    ui->vy_box_6->update();
 }
 
 void MainWindow::on_start_button_clicked() {
@@ -156,4 +245,212 @@ void MainWindow::on_help_button_clicked() {
             "When you hit the \"Stop Simulation\" button or the \"Start Simulaton\" button the file will be closed and thus, saved.";
 
     QMessageBox::about(this, "Help", txt);
+}
+void MainWindow::on_Export_button_clicked() {
+
+    file_name = QFileDialog::getSaveFileName(this, "Save", "", "Text file (*.txt)");
+
+    if(file_name.isEmpty())
+        return;
+
+    file.setFileName(file_name);
+
+    file.open(QIODevice::WriteOnly | QIODevice::Text);
+
+    if(!file.isOpen()){
+        QMessageBox::critical(this, "Error", file.errorString());
+        return;
+    }
+
+    txt_stream.setDevice(&file);
+
+    get_export_values();
+
+    file.flush();
+    file.close();
+
+    ui->save_label->setText("Exported correctly");
+}
+void MainWindow::on_Import_button_clicked() {
+
+    file_name = QFileDialog::getOpenFileName(this, "Open", "", "Text file (*.txt)");
+
+    std::fstream file (file_name.toStdString(), std:: fstream::in | std::fstream::binary);
+
+     if(file.is_open()){
+
+         std::string temp;
+         short counter = 1;
+
+         while (counter <= 6){
+
+             file >> temp;
+
+             switch (counter) {
+             case 1:{
+                 ui->x_box_1->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 2:{
+                 ui->y_box_1->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 3:{
+                 ui->m_box_1->setValue(std::stod(temp.c_str())); break;
+             }
+             case 4:{
+                 ui->r_box_1->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 5:{
+                 ui->vx_box_1->setValue(std::stod(temp.c_str())); break;
+             }
+             case 6:{
+                 ui->vy_box_1->setValue(std::stod(temp.c_str())); break;
+             }
+             }
+             counter++;
+         }
+         counter = 1;
+         while (counter <= 6){
+
+             file >> temp;
+
+             switch (counter) {
+             case 1:{
+                 ui->x_box_2->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 2:{
+                 ui->y_box_2->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 3:{
+                 ui->m_box_2->setValue(std::stod(temp.c_str())); break;
+             }
+             case 4:{
+                 ui->r_box_2->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 5:{
+                 ui->vx_box_2->setValue(std::stod(temp.c_str())); break;
+             }
+             case 6:{
+                 ui->vy_box_2->setValue(std::stod(temp.c_str())); break;
+             }
+             }
+             counter++;
+         }
+         counter = 1;
+         while (counter <= 6){
+
+             file >> temp;
+
+             switch (counter) {
+             case 1:{
+                 ui->x_box_3->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 2:{
+                 ui->y_box_3->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 3:{
+                 ui->m_box_3->setValue(std::stod(temp.c_str())); break;
+             }
+             case 4:{
+                 ui->r_box_3->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 5:{
+                 ui->vx_box_3->setValue(std::stod(temp.c_str())); break;
+             }
+             case 6:{
+                 ui->vy_box_3->setValue(std::stod(temp.c_str())); break;
+             }
+             }
+             counter++;
+         }
+         counter = 1;
+         while (counter <= 6){
+
+             file >> temp;
+
+             switch (counter) {
+             case 1:{
+                 ui->x_box_4->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 2:{
+                 ui->y_box_4->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 3:{
+                 ui->m_box_4->setValue(std::stod(temp.c_str())); break;
+             }
+             case 4:{
+                 ui->r_box_4->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 5:{
+                 ui->vx_box_4->setValue(std::stod(temp.c_str())); break;
+             }
+             case 6:{
+                 ui->vy_box_4->setValue(std::stod(temp.c_str())); break;
+             }
+             }
+             counter++;
+         }
+         counter = 1;
+         while (counter <= 6){
+
+             file >> temp;
+
+             switch (counter) {
+             case 1:{
+                 ui->x_box_5->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 2:{
+                 ui->y_box_5->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 3:{
+                 ui->m_box_5->setValue(std::stod(temp.c_str())); break;
+             }
+             case 4:{
+                 ui->r_box_5->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 5:{
+                 ui->vx_box_5->setValue(std::stod(temp.c_str())); break;
+             }
+             case 6:{
+                 ui->vy_box_5->setValue(std::stod(temp.c_str())); break;
+             }
+             }
+             counter++;
+         }
+         counter = 1;
+         while (counter <= 6){
+
+             file >> temp;
+
+             switch (counter) {
+             case 1:{
+                 ui->x_box_6->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 2:{
+                 ui->y_box_6->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 3:{
+                 ui->m_box_6->setValue(std::stod(temp.c_str())); break;
+             }
+             case 4:{
+                 ui->r_box_6->setValue(std::stoi(temp.c_str())); break;
+             }
+             case 5:{
+                 ui->vx_box_6->setValue(std::stod(temp.c_str())); break;
+             }
+             case 6:{
+                 ui->vy_box_6->setValue(std::stod(temp.c_str())); break;
+             }
+             }
+             counter++;
+         }
+
+         file.close();
+
+         update_boxes();
+
+         ui->save_label->setText("Imported correctly");
+     }
+     else {
+         ui->save_label->setText("Error importing");
+     }
 }

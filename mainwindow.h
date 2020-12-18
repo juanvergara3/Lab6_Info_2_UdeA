@@ -7,6 +7,7 @@
 #include <QMainWindow>
 #include <QTextStream>
 #include <QFileDialog>
+#include <fstream>
 #include <QTimer>
 
 #include "body.h"
@@ -45,6 +46,8 @@ public: // Methods
     void update_T();
 
 private: // Methods
+    void get_export_values();
+    void update_boxes();
 
 private slots: //slots
     void simulation();
@@ -54,5 +57,7 @@ private slots: //slots
     void on_resume_button_clicked();
     void on_stop_button_clicked();
     void on_help_button_clicked();
+    void on_Export_button_clicked();
+    void on_Import_button_clicked();
 };
 #endif // MAINWINDOW_H

@@ -357,7 +357,7 @@
             <number>99999</number>
            </property>
            <property name="value">
-            <number>4000</number>
+            <number>0</number>
            </property>
           </widget>
          </item>
@@ -411,7 +411,7 @@
             <number>99999</number>
            </property>
            <property name="value">
-            <number>-7000</number>
+            <number>0</number>
            </property>
           </widget>
          </item>
@@ -434,7 +434,7 @@
             <number>99999</number>
            </property>
            <property name="value">
-            <number>5000</number>
+            <number>0</number>
            </property>
           </widget>
          </item>
@@ -485,7 +485,7 @@
             <double>999999.989999999990687</double>
            </property>
            <property name="value">
-            <double>70.000000000000000</double>
+            <double>0.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -495,7 +495,7 @@
             <double>999999.989999999990687</double>
            </property>
            <property name="value">
-            <double>70000.000000000000000</double>
+            <double>0.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -505,7 +505,7 @@
             <double>999999.989999999990687</double>
            </property>
            <property name="value">
-            <double>25.000000000000000</double>
+            <double>0.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -547,7 +547,7 @@
             <number>99999999</number>
            </property>
            <property name="value">
-            <number>120</number>
+            <number>0</number>
            </property>
           </widget>
          </item>
@@ -557,7 +557,7 @@
             <number>99999999</number>
            </property>
            <property name="value">
-            <number>300</number>
+            <number>0</number>
            </property>
            <property name="displayIntegerBase">
             <number>10</number>
@@ -570,7 +570,7 @@
             <number>99999999</number>
            </property>
            <property name="value">
-            <number>100</number>
+            <number>0</number>
            </property>
           </widget>
          </item>
@@ -615,7 +615,7 @@
             <double>999999.989999999990687</double>
            </property>
            <property name="value">
-            <double>2.000000000000000</double>
+            <double>0.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -641,7 +641,7 @@
             <double>999999.989999999990687</double>
            </property>
            <property name="value">
-            <double>-1.600000000000000</double>
+            <double>0.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -730,7 +730,7 @@
             <double>999999.989999999990687</double>
            </property>
            <property name="value">
-            <double>1.200000000000000</double>
+            <double>0.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -858,16 +858,30 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>850</x>
-      <y>70</y>
+      <x>860</x>
+      <y>60</y>
       <width>141</width>
-      <height>67</height>
+      <height>121</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="save_layout">
+     <item>
+      <widget class="QPushButton" name="Export_button">
+       <property name="text">
+        <string>Export</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Import_button">
+       <property name="text">
+        <string>Import</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QLabel" name="save_label">
        <property name="text">
